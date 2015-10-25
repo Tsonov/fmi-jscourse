@@ -62,6 +62,15 @@ var toNumber = sequence(parseFloat, Math.round);
 console.log("Task 4");
 console.log(toNumber('66.7'));
 
+var compose = function() {
+	var args = [].slice.call(arguments).reverse();
+	return sequence.apply(null, args);
+}
+
+var toNumberRev = compose(Math.round, parseFloat);
+console.log("Task 4.1");
+console.log(toNumberRev('66.7'));
+
 var cons = function (a, b) {
 	return function (fn) {
 		return fn(a, b);
