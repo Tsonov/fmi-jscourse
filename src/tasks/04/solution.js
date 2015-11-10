@@ -104,39 +104,6 @@ function* generateAwesomeName() {
 	}
 }
 
-function sync(generator) {
-	var gen,
-		asyncExec;
-	asyncExec = function (asyncFn) {
-		asyncFn(gen);
-	}
-	gen = generator(asyncExec);
-	gen.next();
-}
-
-function* docsGenerator(asyncExecutor) {
-	var maxCount = 5,
-		currentVal = "",
-		it = generateAwesomeName(),
-		currentIter = 1;
-
-	while (currentIter <= maxCount) { // Iterator is endless in this case, no need to check for "done"
-		asyncExecutor((self) => {
-			setTimeout(() => {
-				// Self resumes the execution of this iterator
-				it.next().value.then((name) => {
-					log("Got a name");
-					currentVal += (currentIter == 1 ? name : " extends " + name);
-					self.next();
-				});
-			});
-		});
-		yield;
-		currentIter++;
-	}
-	return;
-}
-
 function* simulateDocs() {
 	var maxCount = 5,
 		currentVal = "",
