@@ -1,3 +1,4 @@
 .vscode/launch.json
 logs/
 node_modules/
+file*.txt
